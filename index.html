@@ -5,77 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chethina Jayawardhana | Portfolio</title>
     <style>
-        /* CSS Styles */
+        /* Modern CSS Variables & Reset */
         :root {
-            --primary-color: #20BEFF; /* Kaggle Blue */
-            --bg-color: #0d1117; /* GitHub Dark */
-            --text-color: #c9d1d9;
-            --card-bg: #161b22;
+            --primary-color: #00d2ff; /* Neon Cyan */
+            --secondary-color: #3a7bd5;
+            --bg-color: #0b0f19; /* Deep Modern Dark */
+            --text-color: #e2e8f0;
+            --card-bg: rgba(255, 255, 255, 0.03);
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            overflow-x: hidden;
         }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(0, 210, 255, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(0, 210, 255, 0.2); }
+        }
+
+        /* Header Section */
         header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-            border-bottom: 1px solid #30363d;
+            padding: 2rem;
+            background: radial-gradient(circle at top, #1a233a 0%, var(--bg-color) 70%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        h1 {
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-        .subtitle {
-            color: var(--primary-color);
-            font-size: 1.2rem;
+
+        /* Profile Image Styling */
+        .profile-img-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            animation: fadeInDown 1s ease-out, pulseGlow 3s infinite;
             margin-bottom: 2rem;
         }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        /* Social Links */
+        .contact-links {
+            animation: fadeInUp 1s ease-out 0.7s backwards;
+            display: flex;
+            gap: 15px;
+        }
+        .contact-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .contact-links a:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        /* Content Sections */
         .container {
             max-width: 900px;
             margin: auto;
-            padding: 2rem;
+            padding: 4rem 2rem;
         }
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 210, 255, 0.2);
         }
         h2 {
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
         }
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            margin-left: 15px;
+        }
+        ul { list-style-type: none; }
+        ul li {
+            margin-bottom: 1rem;
+            padding-left: 20px;
+            position: relative;
+        }
+        ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Skills Tags */
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
         .skill-tag {
-            background-color: var(--card-bg);
-            border: 1px solid #30363d;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        .contact-links a {
+            background: rgba(0, 210, 255, 0.05);
             color: var(--primary-color);
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: bold;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
         }
-        .contact-links a:hover {
-            text-decoration: underline;
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: #000;
         }
     </style>
 </head>
 <body>
 
     <header>
+        <!-- Linked Image -->
+        <div class="profile-img-container">
+            <img src="https://github.com/CheJay2006/CheJay2006.github.io/blob/d41e80e423fd79bc8b23466c8a3a499153ab2234/1758951662598.jpg" alt="Chethina Jayawardhana" class="profile-img">
+        </div>
+        
         <h1>Chethina Jayawardhana</h1>
         <p class="subtitle">Tech Enthusiast | Aspiring AI & Data Science Practitioner</p>
+        
         <div class="contact-links">
             <a href="mailto:chethina2006@gmail.com">Email Me</a>
             <a href="https://github.com/CheJay2006" target="_blank">GitHub</a>
@@ -84,24 +195,21 @@
     </header>
 
     <div class="container">
-        <!-- About Section -->
         <section id="about">
             <h2>About Me</h2>
-            <p>I am a highly motivated and detail-oriented individual from Sri Lanka, passionate about exploring the intersections of data, artificial intelligence, and user experience. With a strong foundation in analytical thinking built through my Advanced Level studies in Economics, ICT, and Accounting (2025/2026), I am actively expanding my technical skills into Python, Data Analytics, and AI Prompting. I also have a keen interest in cinematic video production and digital content creation.</p>
+            <p>I am a highly motivated and detail-oriented individual from Sri Lanka, passionate about exploring the intersections of data, artificial intelligence, and user experience. With a strong foundation in analytical thinking built through my Advanced Level studies in Economics, ICT, and Accounting, I am actively expanding my technical skills into Python, Data Analytics, and AI Prompting. I also have a keen interest in cinematic video production and digital content creation.</p>
         </section>
 
-        <!-- Education & Qualifications -->
         <section id="education">
             <h2>Education & Qualifications</h2>
             <ul>
-                <li><strong>G.C.E. Advanced Level (2026)</strong> - Isipathana College (Commerce Stream: Economics, ICT, Accounting)</li>
-                <li><strong>AI/ML Engineer Path (Reading)</strong> - Faculty of Computing, SLIIT (Stage 1 completed)</li>
+                <li><strong>G.C.E. Advanced Level (2026)</strong></li>
+                <li><strong>AI/ML Engineer Path (Reading)</strong> - Faculty of Computing, SLIIT (Stage 3 completed)</li>
                 <li><strong>Diploma in Information Technology (Level 3)</strong> - ESOFT Metro Campus (2024)</li>
-                <li><strong>Social Entrepreneurship</strong> - HP Foundation LIFE online course (2026)</li>
+                <li><strong>Social Entrepreneurship</strong> - HP Foundation LIFE online course</li>
             </ul>
         </section>
 
-        <!-- Skills Section -->
         <section id="skills">
             <h2>Technical Skills</h2>
             <div class="skills">
@@ -109,16 +217,16 @@
                 <span class="skill-tag">Python (Learning)</span>
                 <span class="skill-tag">Data Analytics</span>
                 <span class="skill-tag">AI Prompt Engineering</span>
-                <span class="skill-tag">Video Editing (Digital Creator)</span>
-                <span class="skill-tag">Microsoft Office (Excel, Word)</span>
-                <span class="skill-tag">Analytical Problem Solving</span>
+                <span class="skill-tag">Video Editing</span>
+                <span class="skill-tag">UI/UX Design</span>
             </div>
         </section>
 
-        <!-- Projects Section (Placeholder for future) -->
         <section id="projects">
             <h2>Featured Projects</h2>
-            <p><em>Currently building my Data Science and Web Development portfolio. Recent web interface projects and AI/ML case studies will be uploaded here soon! Check my GitHub and Kaggle profiles for updates.</em></p>
+            <p style="color: #8b949e; font-style: italic;">
+                Currently building my Data Science and Web Development portfolio. Recent interactive web interfaces and AI/ML case studies will be uploaded here soon! Check my GitHub and Kaggle profiles for updates.
+            </p>
         </section>
     </div>
 
