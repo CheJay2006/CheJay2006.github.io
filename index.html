@@ -3,232 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chethina Jayawardhana | Portfolio</title>
+    <title>Chethina Jayawardhana | AI & Data Science</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Modern CSS Variables & Reset */
+        /* --- CSS VARIABLES --- */
         :root {
-            --primary-color: #00d2ff; /* Neon Cyan */
-            --secondary-color: #3a7bd5;
-            --bg-color: #0b0f19; /* Deep Modern Dark */
-            --text-color: #e2e8f0;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --bg-main: #050810; /* Ultra dark space blue */
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --primary: #00f2fe; /* Neon Cyan */
+            --secondary: #4facfe;
+            --accent: #8a2387; /* Magenta glow */
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(138, 35, 135, 0.08), transparent 25%);
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 8, 16, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .logo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none;}
+        .logo span { color: var(--primary); }
+        .nav-links a {
+            color: var(--text-main); text-decoration: none;
+            margin-left: 30px; font-weight: 500; font-size: 0.9rem;
+            transition: color 0.3s;
         }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px rgba(0, 210, 255, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); }
-            100% { box-shadow: 0 0 10px rgba(0, 210, 255, 0.2); }
-        }
+        .nav-links a:hover { color: var(--primary); }
 
-        /* Header Section */
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-            text-align: center;
-            padding: 2rem;
-            background: radial-gradient(circle at top, #1a233a 0%, var(--bg-color) 70%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* --- HERO SECTION --- */
+        #home {
+            height: 100vh; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px; position: relative;
         }
-
-        /* Profile Image Styling */
-        .profile-img-container {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            animation: fadeInDown 1s ease-out, pulseGlow 3s infinite;
-            margin-bottom: 2rem;
+        
+        .profile-container {
+            position: relative; width: 200px; height: 200px; margin-bottom: 30px;
         }
         .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-color);
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--bg-main);
+            position: relative; z-index: 2;
         }
+        /* Glowing animated border behind image */
+        .profile-container::before {
+            content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            border-radius: 50%; z-index: 1;
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Typography */
         h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
-            animation: fadeInUp 1s ease-out 0.3s backwards;
+            font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 800;
+            margin-bottom: 10px; line-height: 1.2;
+            background: -webkit-linear-gradient(right, #fff, #a5b4fc);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .subtitle {
-            font-size: 1.2rem;
-            background: -webkit-linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
+        
+        .typing-container {
+            font-size: 1.5rem; color: var(--primary); font-weight: 500;
+            margin-bottom: 30px; height: 30px;
+        }
+        .typewriter { border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .btn {
+            padding: 12px 35px; border-radius: 30px; text-decoration: none;
+            font-weight: 600; font-size: 1rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000; box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 242, 254, 0.4); }
+
+        /* --- GLOBAL SECTION STYLES --- */
+        section { padding: 100px 10%; }
+        .section-title {
+            font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800;
+            margin-bottom: 50px; text-align: center; position: relative;
+        }
+        .section-title span { color: var(--primary); }
+
+        /* --- ABOUT SECTION --- */
+        .about-content {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+        }
+        .about-text { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
+        .about-card {
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px; border-radius: 20px; backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative; overflow: hidden;
+        }
+        .about-card::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,242,254,0.1) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .about-card:hover::after { opacity: 1; }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;
+        }
+        .skill-box {
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px 20px; border-radius: 15px; text-align: center;
+            transition: all 0.3s; cursor: pointer;
+        }
+        .skill-box i { font-size: 2.5rem; margin-bottom: 15px; color: var(--primary); transition: transform 0.3s;}
+        .skill-box h3 { font-size: 1rem; font-weight: 500; }
+        .skill-box:hover {
+            transform: translateY(-10px); border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+        }
+        .skill-box:hover i { transform: scale(1.2); }
+
+        /* --- TIMELINE (EDUCATION) --- */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after {
+            content: ''; position: absolute; width: 2px; background: rgba(255,255,255,0.1);
+            top: 0; bottom: 0; left: 50%; margin-left: -1px;
+        }
+        .container-timeline { padding: 10px 40px; position: relative; width: 50%; }
+        .container-timeline::after {
+            content: ''; position: absolute; width: 20px; height: 20px;
+            background: var(--bg-main); border: 3px solid var(--primary);
+            border-radius: 50%; top: 15px; z-index: 1;
+        }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .left::after { right: -10px; }
+        .right::after { left: -10px; }
+        .timeline-content {
+            padding: 20px 30px; background: var(--bg-card); border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s;
+        }
+        .timeline-content:hover { transform: scale(1.03); border-color: var(--primary); }
+        .timeline-content h3 { color: var(--primary); margin-bottom: 5px; font-family: 'Outfit'; }
+        .timeline-content .year { font-size: 0.85rem; color: var(--accent); margin-bottom: 10px; display: block;}
+
+        /* --- SOCIAL FOOTER --- */
+        footer {
+            text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 50px;
+        }
+        .social-icons { margin: 20px 0; }
+        .social-icons a {
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 45px; height: 45px; border-radius: 50%; background: var(--bg-card);
+            color: #fff; font-size: 1.2rem; margin: 0 10px; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            background: var(--primary); color: #000; transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
         }
 
-        /* Social Links */
-        .contact-links {
-            animation: fadeInUp 1s ease-out 0.7s backwards;
-            display: flex;
-            gap: 15px;
-        }
-        .contact-links a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .contact-links a:hover {
-            background: var(--primary-color);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
-        }
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Content Sections */
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 4rem 2rem;
-        }
-        section {
-            margin-bottom: 4rem;
-            padding: 2.5rem;
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-        }
-        section:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 210, 255, 0.2);
-        }
-        h2 {
-            color: #fff;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-        }
-        h2::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--primary-color), transparent);
-            margin-left: 15px;
-        }
-        ul { list-style-type: none; }
-        ul li {
-            margin-bottom: 1rem;
-            padding-left: 20px;
-            position: relative;
-        }
-        ul li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-
-        /* Skills Tags */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .skill-tag {
-            background: rgba(0, 210, 255, 0.05);
-            color: var(--primary-color);
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-        .skill-tag:hover {
-            background: var(--primary-color);
-            color: #000;
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Add hamburger menu for real project */
+            h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .container-timeline { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container-timeline::after { left: 21px; }
+            .right { left: 0; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <!-- Linked Image -->
-        <div class="profile-img-container">
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="logo">Che<span>Jay</span></a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="profile-container">
+            <!-- Ensure your image name matches exactly -->
             <img src="https://github.com/CheJay2006/CheJay2006.github.io/blob/main/1758951662598.jpg?raw=true" alt="Chethina Jayawardhana" class="profile-img">
         </div>
-        
         <h1>Chethina Jayawardhana</h1>
-        <p class="subtitle">Tech Enthusiast | Aspiring AI & Data Science Practitioner</p>
-        
-        <div class="contact-links">
-            <a href="mailto:chethina2006@gmail.com">Email Me</a>
-            <a href="https://github.com/CheJay2006" target="_blank">GitHub</a>
-            <a href="https://www.kaggle.com/chethinajayawardhana" target="_blank">Kaggle</a>
+        <div class="typing-container">
+            I am a <span class="typewriter" id="typewriter"></span>
         </div>
-    </header>
+        <a href="#about" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Explore My Universe</a>
+    </section>
 
-    <div class="container">
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am a highly motivated and detail-oriented individual from Sri Lanka, passionate about exploring the intersections of data, artificial intelligence, and user experience. With a strong foundation in analytical thinking built through my Advanced Level studies in Economics, ICT, and Accounting, I am actively expanding my technical skills into Python, Data Analytics, and AI Prompting. I also have a keen interest in cinematic video production and digital content creation.</p>
-        </section>
-
-        <section id="education">
-            <h2>Education & Qualifications</h2>
-            <ul>
-                <li><strong>G.C.E. Advanced Level (2026)</strong></li>
-                <li><strong>AI/ML Engineer Path (Reading)</strong> - Faculty of Computing, SLIIT (Stage 3 completed)</li>
-                <li><strong>Diploma in Information Technology (Level 3)</strong> - ESOFT Metro Campus (2024)</li>
-                <li><strong>Social Entrepreneurship</strong> - HP Foundation LIFE online course</li>
-            </ul>
-        </section>
-
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills">
-                <span class="skill-tag">HTML & CSS</span>
-                <span class="skill-tag">Python (Learning)</span>
-                <span class="skill-tag">Data Analytics</span>
-                <span class="skill-tag">AI Prompt Engineering</span>
-                <span class="skill-tag">Video Editing</span>
-                <span class="skill-tag">UI/UX Design</span>
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <div class="about-content">
+            <div class="about-card">
+                <p class="about-text">
+                    Hi! I'm a highly motivated tech enthusiast from Sri Lanka. I blend analytical thinking with creative design. My journey started with Advanced Level studies in <strong>Economics, ICT, and Accounting</strong>, which built my foundation for logical problem-solving. <br><br>
+                    Today, I am actively diving into the world of <strong>Artificial Intelligence, Data Science, and Web Development</strong>. When I'm not coding or analyzing data, you'll find me crafting cinematic videos and designing modern UI/UX interfaces. I believe in continuous learning and building solutions that make a real impact.
+                </p>
             </div>
-        </section>
+            <div class="skills-grid">
+                <!-- Highlight Cards -->
+                <div class="skill-box" style="border-color: rgba(0, 242, 254, 0.3);">
+                    <i class="fa-solid fa-brain"></i>
+                    <h3>Analytical Mindset</h3>
+                </div>
+                <div class="skill-box" style="border-color: rgba(138, 35, 135, 0.3);">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>Tech Explorer</h3>
+                </div>
+                <div class="skill-box" style="border-color: rgba(79, 172, 254, 0.3);">
+                    <i class="fa-solid fa-video"></i>
+                    <h3>Creative Creator</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <p style="color: #8b949e; font-style: italic;">
-                Currently building my Data Science and Web Development portfolio. Recent interactive web interfaces and AI/ML case studies will be uploaded here soon! Check my GitHub and Kaggle profiles for updates.
-            </p>
-        </section>
-    </div>
+    <!-- Skills Section -->
+    <section id="skills" class="reveal">
+        <h2 class="section-title">My <span>Tech Arsenal</span></h2>
+        <div class="skills-grid">
+            <div class="skill-box"><i class="fa-brands fa-python"></i><h3>Python</h3></div>
+            <div class="skill-box"><i class="fa-solid fa-database"></i><h3>Data Analytics</h3></div>
+            <div class="skill-box"><i class="fa-solid fa-robot"></i><h3>AI Prompting</h3></div>
+            <div class="skill-box"><i class="fa-brands fa-html5"></i><h3>HTML5 & CSS3</h3></div>
+            <div class="skill-box"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>UI/UX Design</h3></div>
+            <div class="skill-box"><i class="fa-solid fa-film"></i><h3>Video Editing</h3></div>
+            <div class="skill-box"><i class="fa-brands fa-github"></i><h3>Git / GitHub</h3></div>
+            <div class="skill-box"><i class="fa-solid fa-chart-pie"></i><h3>Economics/Stats</h3></div>
+        </div>
+    </section>
 
+    <!-- Education Timeline -->
+    <section id="education" class="reveal">
+        <h2 class="section-title">My <span>Journey</span></h2>
+        <div class="timeline">
+            <div class="container-timeline left reveal">
+                <div class="timeline-content">
+                    <span class="year">2026</span>
+                    <h3>G.C.E. Advanced Level</h3>
+                    <p>Isipathana College, Colombo 5. (ICT).</p>
+                </div>
+            </div>
+            <div class="container-timeline right reveal">
+                <div class="timeline-content">
+                    <span class="year">Reading (2026)</span>
+                    <h3>AI/ML Engineer Path</h3>
+                    <p>Faculty of Computing, SLIIT. Exploring the depths of Machine Learning & AI.</p>
+                </div>
+            </div>
+            <div class="container-timeline left reveal">
+                <div class="timeline-content">
+                    <span class="year">2024</span>
+                    <h3>Diploma in IT (Level 3)</h3>
+                    <p>ESOFT Metro Campus. Built a strong foundation in computer science principles.</p>
+                </div>
+            </div>
+            <div class="container-timeline right reveal">
+                <div class="timeline-content">
+                    <span class="year">2026</span>
+                    <h3>Social Entrepreneurship</h3>
+                    <p>HP Foundation LIFE online course. Connecting technology with business value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Let's Connect</h2>
+        <div class="social-icons">
+            <a href="mailto:chethina2006@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/CheJay2006" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.kaggle.com/chethinajayawardhana" target="_blank"><i class="fa-brands fa-kaggle"></i></a>
+            <!-- Add LinkedIn later -->
+            <!-- <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a> -->
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Designed with <i class="fa-solid fa-heart" style="color: #ff0844;"></i> by Chethina Jayawardhana</p>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // 1. Typing Effect Animation
+        const words = ["Data Science Enthusiast.", "Web Developer.", "AI Prompt Engineer.", "Creative Designer."];
+        let i = 0, timer;
+        let isDeleting = false;
+        let txt = '';
+
+        function typeWriter() {
+            const currentWord = words[i];
+            
+            if (isDeleting) {
+                txt = currentWord.substring(0, txt.length - 1);
+            } else {
+                txt = currentWord.substring(0, txt.length + 1);
+            }
+
+            document.getElementById("typewriter").innerHTML = txt;
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && txt === currentWord) {
+                typeSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && txt === '') {
+                isDeleting = false;
+                i++;
+                if (i >= words.length) i = 0;
+                typeSpeed = 500; // Pause before new word
+            }
+            setTimeout(typeWriter, typeSpeed);
+        }
+        
+        // Start typing effect on load
+        window.onload = typeWriter;
+
+        // 2. Reveal on Scroll Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var j = 0; j < reveals.length; j++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[j].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[j].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once to check elements already in view
+        reveal();
+    </script>
 </body>
 </html>
